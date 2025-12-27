@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 120 120">
+
+  <defs>
+    <!-- グラデーション -->
+    <radialGradient id="g">
+      <stop offset="0%" stop-color="#7df9ff"/>
+      <stop offset="50%" stop-color="#6a5cff"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="120" height="120" rx="24" fill="#0b0f1a"/>
+
+  <!-- 外側の揺らぎ -->
+  <circle cx="60" cy="60" r="38"
+          fill="none"
+          stroke="url(#g)"
+          stroke-width="4"
+          opacity="0.6"/>
+
+  <!-- 内側の光 -->
+  <circle cx="60" cy="60" r="20"
+          fill="url(#g)"
+          opacity="0.9"/>
+
+  <!-- 粒子 -->
+  <circle cx="88" cy="40" r="3" fill="#7df9ff"/>
+  <circle cx="34" cy="78" r="2.5" fill="#6a5cff"/>
+  <circle cx="72" cy="90" r="2" fill="#ffffff"/>
+</svg>

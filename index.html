@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Effects Gallery</title>
+    <style>
+        /* 全体のリセットとベース設定 */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* 画面全体をダークグレーに */
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 40px 0;
+            margin: 0;
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            color: #00ffaa; /* マトリックスっぽいアクセントカラー */
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+        }
+
+        /* グリッドレイアウトの肝！ */
+        ul {
+            list-style: none; /* ・を消す */
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px; /* 画面が広すぎるときの上限 */
+
+            display: grid;
+            /* 👇 これが魔法の呪文！画面幅に合わせて自動で列数を調整します */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; /* カード同士の間隔 */
+        }
+
+        /* カードのデザイン */
+        li {
+            background: #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden; /* 角丸からはみ出た画像を隠す */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* ホバー時の動き（PC用） */
+        li:hover {
+            transform: translateY(-5px); /* 少し浮き上がる */
+            box-shadow: 0 10px 25px rgba(0, 255, 170, 0.3); /* 光る影 */
+        }
+
+        /* リンク全体をブロックにしてクリックしやすく */
+        a {
+            display: flex;
+            flex-direction: column-reverse; /* 文字を画像の下に持ってくるテクニック */
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+
+        /* タイトル文字のデザイン */
+        .effect-title {
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-top: 1px solid #333;
+        }
+
+        /* 画像のデザイン */
+        img {
+            width: 100%;
+            height: 200px; /* 高さを統一 */
+            object-fit: cover; /* 画像の比率を崩さずトリミング */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebGL Effects Collection</h1>
+
+    <ul>
+        <li>
+            <a href="./src/effect1/index.html">
+                <span class="effect-title">Effect 1: Robot Model</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2024/06/wordpress-plugin-robot-600x314.jpg" alt="Robot">
+            </a>
+        </li>
+        <li>
+            <a href="./src/effect2/index.html">
+                <span class="effect-title">Effect 2: Window Rain</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2024/06/three-js-shader-rain-through-the-window-600x314.jpg" alt="Rain">
+            </a>
+        </li>
+        <li>
+            <a href="./src/effect3/index.html">
+                <span class="effect-title">Effect 3: Fireworks</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2024/07/p5-firework-600x314.jpg" alt="Fireworks">
+            </a>
+        </li>
+        <li>
+            <a href="./src/effect4/index.html">
+                <span class="effect-title">Effect 4: Cheat Sheet</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2024/08/threejs-shader-cheatsheet-1-600x314.jpg" alt="Shader">
+            </a>
+        </li>
+        <li>
+            <a href="./src/effect5/index.html">
+                <span class="effect-title">Effect 5: Plane 3D</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2024/08/threejs-shader-plane3d-600x314.jpg" alt="Plane">
+            </a>
+        </li>
+        <li>
+            <a href="./src/effect6/index.html">
+                <span class="effect-title">Effect 6: Particles</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2024/09/threejs-shader-particle-600x314.jpg" alt="Particle">
+            </a>
+        </li>
+        <li>
+            <a href="./src/effect7/index.html">
+                <span class="effect-title">Effect 7: Cloth Physics</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2024/10/blender-clothphysics-600x314.jpg" alt="Cloth">
+            </a>
+        </li>
+        <li>
+            <a href="./src/effect8/index.html">
+                <span class="effect-title">Effect 8: Birthday Card</span>
+                <img src="https://koro-koro.com/wp-content/uploads/2025/12/birthday.png" alt="Birthday">
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

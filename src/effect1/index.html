@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effect1</title>
+    <script type="module" crossorigin src="/my-effects-repo/assets/effect1-DfoNy_m0.js"></script>
+    <link rel="modulepreload" crossorigin href="/my-effects-repo/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="/my-effects-repo/assets/scrollObserver-BS9xrVi3.js">
+    <link rel="modulepreload" crossorigin href="/my-effects-repo/assets/three.module-BS1B3NZB.js">
+    <link rel="modulepreload" crossorigin href="/my-effects-repo/assets/raycasterHelper-BKYk4TAk.js">
+    <link rel="modulepreload" crossorigin href="/my-effects-repo/assets/GLTFLoader-C6mNuhKw.js">
+  </head>
+  <style>
+        body{
+         min-height:200vh;
+        }
+        .myeffect-pointer {
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .myeffect-webgl {
+            position: fixed;
+            top: 0;
+            left: 0;
+            outline: none;
+            box-sizing: border-box;
+            z-index:1000;
+            pointer-events: none;
+        }
+        .myeffect-target-class{
+            position:absolute;
+            bottom:0;
+            left:0;
+            width:100%;
+        }
+        .myeffect-point{
+            position: fixed;
+            top:0;
+            left: 0;
+            z-index:1001;
+            font-size:18px;
+            width: 200px;
+            background:  rgba(0,0,0, 0.5);
+            color:#fff;
+            padding: 16px;
+            font-weight:bold;
+            border-radius:4px;
+            opacity:0;
+            backface-visibility: hidden;
+            transform-origin:50% 50% -150px;
+        }
+        @media (max-width: 600px) {
+        .myeffect-point{
+            font-size:14px;
+            width:200px;
+            transform-origin:50% 50% -80px;
+        }
+        }
+        .myeffect-point.visible{
+            opacity:1;
+        }
+
+        .myeffect-point .label{
+            margin-bottom:20px;
+            text-align:center;
+            color:#ffff00;
+        }
+     .back-link {
+        position: absolute;  /* 画面の定位置に固定 */
+        top: 20px;           /* 上から20px */
+        left: 20px;          /* 左から20px */
+        color: #fff;         /* 文字色（白） */
+        text-decoration: none; /* 下線を消す */
+        font-family: sans-serif;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+        padding: 8px 15px;   /* 文字の周りの余白 */
+        border-radius: 20px; /* 丸っこくする */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* 薄い枠線 */
+        transition: all 0.3s; /* ホバー時の動き */
+        z-index: 100; /* キャンバスより手前に表示！これ大事 */
+    }
+
+    .back-link:hover {
+        background: rgba(255, 255, 255, 0.2); /* ホバー時に少し白く */
+        color: #00ffaa; /* 文字をマトリックス色に */
+        border-color: #00ffaa;
+    }
+  </style>
+  <body>
+    <a href="../../index.html" class="back-link">← Gallery</a>
+    <canvas class="myeffect-webgl"></canvas>
+    <div class="myeffect-point">
+        <div class="label">2</div>
+        <div class="text"></div>
+    </div>
+    <div class="myeffect-target-class"></div>
+
+  </body>
+</html>
