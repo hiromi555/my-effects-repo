@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effect7</title>
+  </head>
+  <style>
+  body{
+    min-height:200vh;
+        }
+
+        .myeffect-webgl {
+            position: fixed;
+            /* top: 0;
+            left: 0; */
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            outline: none;
+            box-sizing: border-box;
+            z-index:1000;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .myeffect-target-class{
+            position:absolute;
+            top:5%;
+            left:0;
+            width:100%;
+        }
+
+        .myeffect-text-class-bottom{
+            margin:0;
+            padding:0 20px;
+            position:fixed;
+            pointer-events: none;
+            z-index:1001;
+            top:80%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            border: solid 3px #aadddd;
+            border-radius:8px;
+            text-align:center;
+            white-space: nowrap;
+            font-size: clamp(1.75rem, 1.477rem + 1.36vw, 2.5rem);
+            color:#fff;
+        }
+        .myeffect-text-class-bottom .info {
+            color: #fff;
+            font-size: 0.7em;
+        }
+
+        .effect-hidden .myeffect-webgl, .effect-hidden .myeffect-text-class-bottom{
+            display:none;
+        }
+        .back-link {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 15px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s;
+        z-index: 1001;
+        }
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #00ffaa;
+            border-color: #00ffaa;
+        }
+  </style>
+  <body>
+       <a href="../../index.html" class="back-link">← Gallery</a>
+        <div class="myeffect-target-class"></div>
+        <canvas class="myeffect-webgl"></canvas>
+        <div class="myeffect-text-class-bottom" style="display: none;">
+            <p class="info">スクロールで表示を消す</p>
+        </div>
+        <script type="module" src="/src/effect7/main.js"></script>
+
+  </body>
+</html>

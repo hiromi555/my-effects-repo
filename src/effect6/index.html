@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effect6</title>
+  </head>
+  <style>
+  body{
+    min-height:200vh;
+        }
+
+        .myeffect-webgl {
+            position: fixed;
+            top: 0;
+            left: 0;
+            outline: none;
+            box-sizing: border-box;
+            z-index:1000;
+            pointer-events: none;
+        }
+        .myeffect-target-class{
+            position:absolute;
+            bottom:0;
+            left:0;
+            width:100%;
+        }
+        .effect-hidden .myeffect-webgl{
+            display:none;
+        }
+        .myeffect-pointer {
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .back-link {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 15px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s;
+        z-index: 1001;
+        }
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #00ffaa;
+            border-color: #00ffaa;
+        }
+  </style>
+  <body>
+    <a href="../../index.html" class="back-link">← Gallery</a>
+    <canvas class="myeffect-webgl"></canvas>
+    <div class="myeffect-target-class"></div>
+    <script type="module" src="/src/effect6/main.js"></script>
+  </body>
+</html>

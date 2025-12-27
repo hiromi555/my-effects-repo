@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effect4</title>
+  </head>
+  <style>
+   body{
+    min-height:200vh;
+        }
+        .myeffect-pointer {
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .myeffect-webgl {
+            position: fixed;
+            top: 0;
+            left: 0;
+            outline: none;
+            box-sizing: border-box;
+            z-index:1000;
+        }
+        .myeffect-target-class{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+        }
+        .effect-hidden .myeffect-webgl{
+            display:none;
+        }
+              .back-link {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 15px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s;
+        z-index: 1001;
+        }
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #00ffaa;
+            border-color: #00ffaa;
+        }
+  </style>
+  <body>
+    <a href="../../index.html" class="back-link">← Gallery</a>
+    <div class="myeffect-target-class"></div>
+    <canvas class="myeffect-webgl"></canvas>
+    <script type="module" src="/src/effect4/main.js"></script>
+
+  </body>
+</html>

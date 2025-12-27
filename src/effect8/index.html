@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/effect.svg" />
+    <title>Effect8</title>
+  </head>
+  <style>
+        body {
+            margin: 0;
+            padding:0;
+            overflow: hidden;
+        }
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width:100vw;
+            height:100vh;
+            background: #000;
+            z-index: 9999;
+        }
+
+        #progress-bar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0%;
+            height: 5px;
+            background: #2575fc;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease;
+        }
+
+
+        .myeffect-webgl {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width:100vw;
+            height:100vh;
+            outline: none;
+            box-sizing: border-box;
+            z-index:1;
+        }
+        #card-inner {
+            opacity: 0;/* 初期状態で透明 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width:100vw;
+            height:100vh;
+            z-index:10;
+            pointer-events: none;
+        }
+        .card-front{
+            pointer-events: auto;
+            display:block;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            width: 150px;
+            height: 70px;
+            line-height: 70px;
+            margin: calc(50svh - 35px) auto;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            border-radius: 5px;
+            font-size:28px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+            will-change:transform;
+            transform:scale(0.8);
+        }
+           .back-link {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 15px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s;
+        z-index: 1001;
+        }
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #00ffaa;
+            border-color: #00ffaa;
+        }
+  </style>
+  <body>
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+    <a href="../../index.html" class="back-link">← Gallery</a>
+    <div id="card-inner" style="display: none;">
+        <button class="card-front">OPEN</button>
+    </div>
+    <canvas class="myeffect-webgl"></canvas>
+
+   <script type="module" src="/src/effect8/main.js"></script>
+
+  </body>
+</html>
