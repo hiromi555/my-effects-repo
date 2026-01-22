@@ -3,133 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Effects Gallery</title>
+    <title>BRUTALIST PORTFOLIO</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
-        /* 全体のリセットとベース設定 */
+        /* =========================================
+           BRUTALIST CSS RESET & VARIABLES
+           ========================================= */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #CCFF00; /* Neon Yellow */
+            --border-width: 6px;
+            --border-style: solid #000000;
+            --font-head: 'Archivo Black', sans-serif;
+            --font-body: 'Space Mono', monospace;
+            --spacing: 2rem;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a; /* 画面全体をダークグレーに */
-            color: #ffffff;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.4;
         }
 
-        h1 {
-            text-align: center;
-            padding: 40px 0;
-            margin: 0;
-            font-size: 2rem;
-            letter-spacing: 0.1em;
-            color: #00ffaa; /* マトリックスっぽいアクセントカラー */
-            text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
-        }
-
-        /* グリッドレイアウトの肝！ */
-        ul {
-            list-style: none; /* ・を消す */
-            padding: 20px;
-            margin: 0 auto;
-            max-width: 1200px; /* 画面が広すぎるときの上限 */
-
-            display: grid;
-            /* 👇 これが魔法の呪文！画面幅に合わせて自動で列数を調整します */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; /* カード同士の間隔 */
-        }
-
-        /* カードのデザイン */
-        li {
-            background: #2a2a2a;
-            border-radius: 12px;
-            overflow: hidden; /* 角丸からはみ出た画像を隠す */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* ホバー時の動き（PC用） */
-        li:hover {
-            transform: translateY(-5px); /* 少し浮き上がる */
-            box-shadow: 0 10px 25px rgba(0, 255, 170, 0.3); /* 光る影 */
-        }
-
-        /* リンク全体をブロックにしてクリックしやすく */
-        a {
-            display: flex;
-            flex-direction: column-reverse; /* 文字を画像の下に持ってくるテクニック */
+        /* =========================================
+           UTILITIES
+           ========================================= */
+        .btn-brutal {
+            display: inline-block;
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 1rem 3rem;
+            font-family: var(--font-head);
+            font-size: clamp(1.5rem, 4vw, 3rem);
             text-decoration: none;
-            color: inherit;
-            height: 100%;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s steps(1);
+        }
+        .btn-brutal:hover {
+            background: var(--accent-color);
+            color: var(--text-color);
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px var(--text-color);
+        }
+        .btn-brutal:active { transform: translate(0, 0); box-shadow: none; }
+
+        /* =========================================
+           SECTIONS
+           ========================================= */
+        /* HERO */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--spacing);
+            border-bottom: var(--border-width) var(--border-style);
+            background: radial-gradient(circle, transparent 20%, #000 21%, #000 22%, transparent 23%) 0 0;
+            background-size: 20px 20px;
+            position: relative;
+        }
+        h1.hero-title {
+            font-family: var(--font-head);
+            font-size: clamp(4rem, 15vw, 15rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            mix-blend-mode: exclusion;
+            color: #fff;
+            pointer-events: none;
         }
 
-        /* タイトル文字のデザイン */
-        .effect-title {
-            padding: 15px 20px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-top: 1px solid #333;
+        /* WORKS (Modified for Links) */
+        .works {
+            padding: var(--spacing);
+            border-bottom: var(--border-width) var(--border-style);
+            background-color: var(--accent-color);
+        }
+        .section-title {
+            font-family: var(--font-head);
+            font-size: 4rem;
+            margin-bottom: var(--spacing);
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0px #fff;
         }
 
-        /* 画像のデザイン */
-        img {
+        .swiper {
             width: 100%;
-            height: 200px; /* 高さを統一 */
-            object-fit: cover; /* 画像の比率を崩さずトリミング */
+            height: 60vh; /* 画像が見やすいように少し高く */
+            border: var(--border-width) var(--border-style);
+            background: #000;
+        }
+
+        .swiper-slide {
+            background: #fff;
+            overflow: hidden; /* 画像のはみ出し防止 */
+            position: relative;
+        }
+
+        /* リンク全体をスライドいっぱいに広げる */
+        .work-link {
             display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            position: relative;
+        }
+
+        /* 画像スタイル：通常は白黒、ホバーでカラーに！ */
+        .work-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(120%);
+            transition: filter 0.2s steps(2);
+        }
+
+        .work-link:hover .work-image {
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        /* ラベルスタイル：無骨なステッカー風 */
+        .work-label {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-family: var(--font-head);
+            border: 4px solid var(--bg-color); /* 黒背景に白枠 */
+            max-width: 80%;
+            line-height: 1;
+            z-index: 10;
+        }
+
+        /* "CLICK TO VIEW" バッジ */
+        .view-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            border: 4px solid #000;
+            opacity: 0;
+            transform: rotate(15deg) scale(0.5);
+            transition: all 0.2s steps(2);
+        }
+
+        .work-link:hover .view-badge {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        /* Swiper Controls */
+        .swiper-button-next, .swiper-button-prev {
+            color: #000 !important;
+            font-weight: 900;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            border: 4px solid #000;
+            z-index: 50;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after { font-size: 20px; }
+
+        /* ACTION */
+        .action {
+            padding: 5rem 2rem;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>WebGL Effects Collection</h1>
 
-    <ul>
-        <li>
-            <a href="./src/effect1/index.html">
-                <span class="effect-title">Effect 1: Robot Model</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2024/06/wordpress-plugin-robot-600x314.jpg" alt="Robot">
-            </a>
-        </li>
-        <li>
-            <a href="./src/effect2/index.html">
-                <span class="effect-title">Effect 2: Window Rain</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2024/06/three-js-shader-rain-through-the-window-600x314.jpg" alt="Rain">
-            </a>
-        </li>
-        <li>
-            <a href="./src/effect3/index.html">
-                <span class="effect-title">Effect 3: Fireworks</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2024/07/p5-firework-600x314.jpg" alt="Fireworks">
-            </a>
-        </li>
-        <li>
-            <a href="./src/effect4/index.html">
-                <span class="effect-title">Effect 4: Cheat Sheet</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2024/08/threejs-shader-cheatsheet-1-600x314.jpg" alt="Shader">
-            </a>
-        </li>
-        <li>
-            <a href="./src/effect5/index.html">
-                <span class="effect-title">Effect 5: Plane 3D</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2024/08/threejs-shader-plane3d-600x314.jpg" alt="Plane">
-            </a>
-        </li>
-        <li>
-            <a href="./src/effect6/index.html">
-                <span class="effect-title">Effect 6: Particles</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2024/09/threejs-shader-particle-600x314.jpg" alt="Particle">
-            </a>
-        </li>
-        <li>
-            <a href="./src/effect7/index.html">
-                <span class="effect-title">Effect 7: Cloth Physics</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2024/10/blender-clothphysics-600x314.jpg" alt="Cloth">
-            </a>
-        </li>
-        <li>
-            <a href="./src/effect8/index.html">
-                <span class="effect-title">Effect 8: Birthday Card</span>
-                <img src="https://koro-koro.com/wp-content/uploads/2025/12/birthday.png" alt="Birthday">
-            </a>
-        </li>
-    </ul>
+    <header class="hero">
+        <h1 class="hero-title gs-reveal">MY<br>WORK<br>LOGS</h1>
+    </header>
+
+    <section class="works gs-reveal">
+        <h2 class="section-title">PROJECTS</h2>
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="./src/effect1/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">ROBOT<br>MODEL</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2024/06/wordpress-plugin-robot-600x314.jpg" alt="Robot" class="work-image">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="./src/effect2/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">WINDOW<br>RAIN</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2024/06/three-js-shader-rain-through-the-window-600x314.jpg" alt="Rain" class="work-image">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="./src/effect3/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">FIREWORKS</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2024/07/p5-firework-600x314.jpg" alt="Fireworks" class="work-image">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="./src/effect4/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">CHEAT<br>SHEET</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2024/08/threejs-shader-cheatsheet-1-600x314.jpg" alt="Shader" class="work-image">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="./src/effect5/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">PLANE 3D</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2024/08/threejs-shader-plane3d-600x314.jpg" alt="Plane" class="work-image">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="./src/effect6/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">PARTICLES</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2024/09/threejs-shader-particle-600x314.jpg" alt="Particle" class="work-image">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="./src/effect7/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">CLOTH<br>PHYSICS</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2024/10/blender-clothphysics-600x314.jpg" alt="Cloth" class="work-image">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="./src/effect8/index.html" class="work-link">
+                        <div class="view-badge">CLICK TO VIEW</div>
+                        <div class="work-label">BIRTHDAY<br>CARD</div>
+                        <img src="https://koro-koro.com/wp-content/uploads/2025/12/birthday.png" alt="Birthday" class="work-image">
+                    </a>
+                </div>
+
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </section>
+
+    <footer class="action">
+        <button id="confettiBtn" class="btn-brutal">CELEBRATE!</button>
+        <p style="margin-top: 2rem;">© 2026 BRUTALIST PORTFOLIO</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // HERO ANIMATION
+        gsap.from(".hero-title", {
+            y: 100, opacity: 0, duration: 1.5, ease: "steps(4)"
+        });
+
+        // SCROLL REVEAL
+        gsap.utils.toArray(".gs-reveal").forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: { trigger: section, start: "top 80%" },
+                y: 50, opacity: 0, duration: 0.6, ease: "power4.out"
+            });
+        });
+
+        // SWIPER
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            speed: 0,
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        });
+
+        // CONFETTI
+        document.getElementById('confettiBtn').addEventListener('click', () => {
+            const square = confetti.shapeFromPath({ path: 'M0 0 L10 0 L10 10 L0 10z' });
+            confetti({
+                particleCount: 150, spread: 100, origin: { y: 0.6 },
+                colors: ['#000', '#CCFF00', '#FFF'], shapes: [square], scalar: 1.5
+            });
+        });
+    </script>
 </body>
 </html>
